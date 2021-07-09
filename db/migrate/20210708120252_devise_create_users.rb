@@ -18,6 +18,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       ##Travel Agency
       t.string :agency_name
       t.decimal :average_rating
+      t.bigint  :verified_by
+      t.boolean :active, default: true
+
 
       ## Recoverable
       t.string   :reset_password_token

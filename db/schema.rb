@@ -10,20 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_141844) do
+ActiveRecord::Schema.define(version: 2021_07_09_113014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "reviews", force: :cascade do |t|
-    t.bigint "travel_agency_id"
+    t.bigint "agency_id"
     t.bigint "tourist_id"
     t.text "review"
     t.decimal "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["agency_id"], name: "index_reviews_on_agency_id"
     t.index ["tourist_id"], name: "index_reviews_on_tourist_id"
-    t.index ["travel_agency_id"], name: "index_reviews_on_travel_agency_id"
   end
 
   create_table "tourist_tours", force: :cascade do |t|
@@ -38,27 +66,26 @@ ActiveRecord::Schema.define(version: 2021_07_08_141844) do
   end
 
   create_table "tours", force: :cascade do |t|
-    t.bigint "travel_agency_id"
+    t.bigint "agency_id"
     t.string "name"
     t.decimal "price"
     t.string "location"
     t.integer "duration"
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["travel_agency_id"], name: "index_tours_on_travel_agency_id"
+    t.index ["agency_id"], name: "index_tours_on_agency_id"
   end
 
   create_table "travel_transactions", force: :cascade do |t|
-    t.bigint "tour_id"
-    t.bigint "tourist_id"
-    t.bigint "travel_agency_id"
-    t.string "package_name"
-    t.decimal "price"
+    t.bigint "tourist_tour_id"
+    t.bigint "agency_id"
+    t.integer "total_guest"
+    t.decimal "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tour_id"], name: "index_travel_transactions_on_tour_id"
-    t.index ["tourist_id"], name: "index_travel_transactions_on_tourist_id"
-    t.index ["travel_agency_id"], name: "index_travel_transactions_on_travel_agency_id"
+    t.index ["agency_id"], name: "index_travel_transactions_on_agency_id"
+    t.index ["tourist_tour_id"], name: "index_travel_transactions_on_tourist_tour_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,6 +100,8 @@ ActiveRecord::Schema.define(version: 2021_07_08_141844) do
     t.date "birth_date"
     t.string "agency_name"
     t.decimal "average_rating"
+    t.bigint "verified_by"
+    t.boolean "active", default: true
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -82,4 +111,6 @@ ActiveRecord::Schema.define(version: 2021_07_08_141844) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
