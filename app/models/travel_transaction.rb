@@ -1,5 +1,4 @@
 class TravelTransaction < ApplicationRecord
-    belongs_to :tourist
-    belongs_to :tour
-    belongs_to :travel_agency
+    belongs_to :tourist_tour
+    belongs_to :agency
 end

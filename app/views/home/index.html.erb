@@ -1,0 +1,4 @@
+<%if current_user.signed_in?%>
+    <%= current_tourist.profile_pic%>
+    <%= button_to "Sign Out", destroy_tourist_session_path, method: :delete%>
+<%end%>
