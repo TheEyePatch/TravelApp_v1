@@ -1,0 +1,32 @@
+<section class="card">
+  <div class="card-wrapper">
+    <div class='top'>
+      <div class='name_and_symbol'>
+        <h2><%= @tour.name%></h2>
+        <h2><%= @tour.%></h2>
+        <em><%= @tour.price%></em>
+      </div>
+    </div>
+  
+    <%if buyer_signed_in?%>
+      <%= form_with scope: :buyer_stock, url: buyer_stocks_path(current_buyer), local: true do |f|%>
+        <%= f.hidden_field :broker_stock_id, value: @        
+        <div class="bottom">
+          <div class="quantity">
+            <%= f.label :guest %>:
+            <%= f.number_field :guest, value: 1, id: :quantity%>
+            <p class="btn-confirm" id= confirm-quantity >Confirm</p>
+          </div>
+
+          <div class="total">
+            <%= f.label :total %>:
+            <%= f.number_field  id: :total_price, class:'total_input' %>
+            <%= f.number_field  id: :total_price, class:'total_input' %>
+            <%= f.submit 'Buy', class:"buy" %>
+          </div>
+
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+</section>
