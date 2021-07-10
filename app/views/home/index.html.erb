@@ -1,4 +1,9 @@
-<%if current_user.signed_in?%>
-    <%= current_tourist.profile_pic%>
+<% if tourist_signed_in?%>
+    <% if current_tourist.profile_pic.attached?%>
+
+    <img src="<%=(url_for(current_tourist.profile_pic))%>" alt="">
+    <% end %>
     <%= button_to "Sign Out", destroy_tourist_session_path, method: :delete%>
-<%end%>
+<% end %>
+
+
