@@ -8,6 +8,11 @@ class TouristToursController < ApplicationController
         @tourist_tour = tourist.tourist_tours.find(params[:id])
     end
 
+    def new
+        @tour = Tour.find(params[:id])
+        @tourist_tour = tourist.tourist_tours.build
+    end
+
     def create
         @tourist_tour = tourist.tourist_tours.build(tourist_tour_params)
         @tourist_tour.save
