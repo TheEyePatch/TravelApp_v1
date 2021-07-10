@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_113014) do
   create_table "tourist_tours", force: :cascade do |t|
     t.bigint "tourist_id"
     t.bigint "tour_id"
+    t.integer "guest_quantity"
+    t.decimal "amount_bought"
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
@@ -80,7 +82,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_113014) do
   create_table "travel_transactions", force: :cascade do |t|
     t.bigint "tourist_tour_id"
     t.bigint "agency_id"
-    t.integer "total_guest"
     t.decimal "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
