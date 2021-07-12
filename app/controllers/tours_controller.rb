@@ -18,8 +18,9 @@ class ToursController < ApplicationController
     end
 
     def create
+        byebug
         @tour = current_agency.tours.build(tour_params)
-
+        byebug
         if @tour.valid?
             @tour.save
             redirect_to tours_path, notice: "Successfully created #{@tour.name} package"
@@ -27,10 +28,22 @@ class ToursController < ApplicationController
             redirect_to new_tour_path, alert: @tour.errors.full_messages.first
         end
     end
+    def edit
+        @tour = Tour.find(params[:id])
+    end
+    def update
+        @tour = Tour.find(params[:id])
+        if  @tour.update(tour_params)
+         flash[:notice] = 'tour was updated successfully.'
+         redirect_to tour_path(@tour)
+         else
+             render 'edit'
+        end
+     end
 
     private
 
     def tour_params
-        params.require(:tour).permit(:name, :price, :location, :duration)
+        params.require(:tour).permit(:name, :price, :location, :duration, :details)
     end
 end
