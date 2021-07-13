@@ -1,5 +1,5 @@
 <div class="main-body">
-  <h1 class="heading-primary-h1">Create a new article</h1>
+  <h1 class="heading-primary-h1">Create a new Tour</h1>
   <%= render 'shared/errors', obj: @tour %>
 
  
@@ -21,13 +21,15 @@
             <%= f.label :duration, :class=>"form-label"%>
             <%= f.number_field :duration, step:1, :class=>"form-control"%>
          </div>
-        <div class="img-container p-3"> 
-        <img class="img-fluid" id="img_prev"  src="<%= asset_path('upload_image.png')%>" alt="">
+        <div class="img-container p-3 text-center"> 
+            <img class="img-fluid" id="img_prev"  src="<%= asset_path('upload_image.png')%>" alt="">
         </div>
-  
+        <div class="images-container p-3" id='images-prev'> 
+        </div>
+    
         <div class="mb-3">
           <%= f.label :"Select Hero Image",:class=>"form-label"%>
-          <%= f.file_field :photo,:class=>"form-control form-control-lg image-upload"%>
+          <%= f.file_field :images, multiple: true,:class=>"form-control form-control-lg image-upload"%>
         </div>
 
         <div class="mb-3">
@@ -49,18 +51,4 @@
 
 </div>
 
-    <script>
-    
-    const uploadImageInput = document.getElementById("article_photo")
-    const output = document.getElementById('img_prev');
-    uploadImageInput.onchange = function(){
-        console.log('file change')
-        
-        var reader = new FileReader();
-        reader.onload = function(){
-          output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-    
-    </script>
+<%= javascript_pack_tag 'image_preview' %>

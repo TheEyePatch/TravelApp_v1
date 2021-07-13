@@ -18,9 +18,7 @@ class ToursController < ApplicationController
     end
 
     def create
-        byebug
         @tour = current_agency.tours.build(tour_params)
-        byebug
         if @tour.valid?
             @tour.save
             redirect_to tours_path, notice: "Successfully created #{@tour.name} package"
@@ -44,6 +42,6 @@ class ToursController < ApplicationController
     private
 
     def tour_params
-        params.require(:tour).permit(:name, :price, :location, :duration, :details)
+        params.require(:tour).permit(:name, :price, :location, :duration, :details, images: [])
     end
 end

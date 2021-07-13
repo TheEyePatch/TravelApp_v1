@@ -14,3 +14,8 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+import "bootstrap"
+import $ from 'jquery';
+
+global.$ = jQuery;
