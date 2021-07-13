@@ -1,0 +1,19 @@
+<nav>
+      <%= link_to 'TripZilla', root_path%>
+
+    <%if user_signed_in?%>
+      <%if current_user.profile_pic.attached?%>
+        <img src="<%=(url_for(current_user.profile_pic))%>" alt="">
+      <%end%>
+      <% if tourist_signed_in? %>
+        <%= link_to 'Tours', tours_path%>
+        <%= link_to 'Your Tours', tourist_tours_path%>
+        <%= link_to 'Sign-out', destroy_tourist_session_path, method: :delete%>
+      <%elsif agency_signed_in?%>
+        <%= link_to 'Sign-out', destroy_agency_session_path, method: :delete%>
+      <% end %>
+    <%elsif !user_signed_in?%>
+      <%= link_to 'Tourist Sign-in', new_tourist_session_path%>
+      <%= link_to 'Agency Sign-in', new_agency_session_path%>
+    <%end%>
+</nav>

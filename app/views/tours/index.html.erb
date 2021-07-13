@@ -1,0 +1,17 @@
+<% @tours.each do |tour|%>
+<div>
+    <h2><%= tour.name%></h2>
+    <ul>
+        <%if tourist_signed_in?%>
+            <li><%= link_to 'Avail Package', new_tourist_tour_path(tour.id)%></li>
+        <%else%>
+            <li><%= link_to 'Show', tour_path(tour)%></li>
+        <%end%>
+        <li><%= tour.price%></li>
+        <li><%= tour.location%></li>
+    </ul>
+    <% if tour.images.attached?%>
+        <img class="img-fluid"   src="<%=(url_for(tour.images.first))%>" alt="">
+    <%end%>
+</div>
+<%end%>

@@ -9,12 +9,12 @@ class TouristToursController < ApplicationController
     end
 
     def new
-        @tour = Tour.find(params[:id])
-        @tourist_tour = tourist.tourist_tours.build
+        @tour = Tour.find(params[:tour_id])
+        @tourist_tour = current_tourist.tourist_tours.build
     end
 
     def create
-        @tourist_tour = tourist.tourist_tours.build(tourist_tour_params)
+        @tourist_tour = current_tourist.tourist_tours.build(tourist_tour_params)
         @tourist_tour.save
         if @tourist_tour.save
             TravelTransaction.create(tourist_tour_id: @tourist_tour.id, agency_id: @tourist_tour.tour.agency.id, total_price:@tourist_tour.amount_bought )

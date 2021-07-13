@@ -1,32 +1,40 @@
-<section class="card">
-  <div class="card-wrapper">
-    <div class='top'>
-      <div class='name_and_symbol'>
-        <h2><%= @tour.name%></h2>
-        <h2><%= @tour.%></h2>
-        <em><%= @tour.price%></em>
-      </div>
-    </div>
-  
-    <%if buyer_signed_in?%>
-      <%= form_with scope: :buyer_stock, url: buyer_stocks_path(current_buyer), local: true do |f|%>
-        <%= f.hidden_field :broker_stock_id, value: @        
-        <div class="bottom">
-          <div class="quantity">
-            <%= f.label :guest %>:
-            <%= f.number_field :guest, value: 1, id: :quantity%>
-            <p class="btn-confirm" id= confirm-quantity >Confirm</p>
-          </div>
-
-          <div class="total">
-            <%= f.label :total %>:
-            <%= f.number_field  id: :total_price, class:'total_input' %>
-            <%= f.number_field  id: :total_price, class:'total_input' %>
-            <%= f.submit 'Buy', class:"buy" %>
-          </div>
-
-        </div>
-      <%end%>
+<h1> <%=@tour.name%> </h1>
+<div>
+    <% if @tour.images.attached?%>
+        <%@tour.images.each do |image|%>
+            <img class="img-fluid"   src="<%=(url_for(image))%>" alt="">
+         <%end%>
     <%end%>
+</div>
+<h2> <%=@tour.location%> </h2>
+<h3 id = tour-price><%=@tour.price%></h3>
+<h3 id = tour-duration> <%=@tour.duration%> </h3>
+<p> <%=@tour.details%> </p>
+
+<%= form_with scope: :tourist_tour, url: tourist_tours_path, local: true do |f|%>
+  <div>
+    <%= f.label :guest_quantity%> <br>
+    <%= f.number_field :guest_quantity, id: 'guest_quantity'%>
   </div>
-</section>
+  
+  <div>
+    <%= f.label 'Total Price'%> <br>
+    <%= f.number_field :amount_bought, readonly: true, id: 'total_price', min: 1%>
+  </div>
+
+  <div>
+    <%= f.label :start_date%> <br>
+    <%= f.date_field :start_date, id: 'start-date'%>
+  </div>
+
+  <div>
+    <%= f.label :end_date%> <br>
+    <%= f.date_field :end_date, readonly: true, id: 'end-date'%>
+  </div>
+
+  <%= f.hidden_field :tour_id, value: @tour.id%>
+  <%= f.submit 'Avail'%>
+  
+<%end%>
+
+<%= javascript_pack_tag 'tourist_tour_new' %>
