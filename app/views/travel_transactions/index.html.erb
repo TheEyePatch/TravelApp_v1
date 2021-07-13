@@ -1,0 +1,33 @@
+
+<table>
+    <thead>
+        <th>Package Name</th>
+        <% if agency_signed_in?%>
+            <th>Tourist</th>
+        <% elsif tourist_signed_in?%>
+            <th>Agency</th>
+        <%end%>
+        <th>Date Availed</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </thead>
+<tbody>
+<% @travel_transactions.each do |transaction|%>
+    <tr>
+        <td><%= transaction.tourist_tour.tour.name%></td>
+        <%if agency_signed_in?%>
+            <td><%= transaction.tourist_tour.tourist.email%></td>
+        <%elsif tourist_signed_in?%>
+            <td><%= transaction.agency.email%></td>
+        <%end%>
+        <td><%= transaction.created_at.strftime('%b %d, %Y')%></td>
+        <%if !transaction.tourist_tour.start_date.nil?%>
+            <td><%= transaction.tourist_tour.start_date.strftime('%b %d, %Y')%></td>
+        <%end%>
+        <%if !transaction.tourist_tour.end_date.nil?%>
+            <td><%= transaction.tourist_tour.end_date.strftime('%b %d, %Y')%></td>
+        <%end%>
+    </tr>
+<%end%>
+</tbody>
+</table>
