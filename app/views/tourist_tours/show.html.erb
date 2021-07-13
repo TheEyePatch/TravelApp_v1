@@ -1,0 +1,11 @@
+<div>
+    <h1><%= @tourist_tour.tour.name%></h1>
+    <h2><%= @tourist_tour.amount_bought%></h2>
+    <%if @tourist_tour.tour.images.attached?%>
+        <%@tourist_tour.tour.images.each do |img|%>
+            <img src="<%= url_for(img)%>" alt="">
+        <% end %>
+    <%end%>
+    <div><%= @tourist_tour.tour.details.body%></div>
+
+</div>

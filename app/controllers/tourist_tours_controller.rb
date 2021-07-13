@@ -5,7 +5,7 @@ class TouristToursController < ApplicationController
     end
 
     def show
-        @tourist_tour = tourist.tourist_tours.find(params[:id])
+        @tourist_tour = current_tourist.tourist_tours.find(params[:id])
     end
 
     def new
