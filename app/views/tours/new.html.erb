@@ -1,0 +1,54 @@
+<div class="main-body">
+  <h1 class="heading-primary-h1">Create a new Tour</h1>
+  <%= render 'shared/errors', obj: @tour %>
+
+ 
+  <div class="container shadow-sm mt-4">
+      <%= form_with scope: :tour, url: tours_path, local:true do |f|%>
+        <div class="mb-3"> 
+          <%= f.label :'Package name', :class=>"form-label"%>
+          <%= f.text_field :name, placeholder: "Package Name" , :class=>"form-control"%>
+        </div> 
+        <div class="mb-3"> 
+            <%= f.label :price, :class=>"form-label"%>
+            <%= f.number_field :price, :class=>"form-control"%>
+         </div> 
+         <div class="mb-3"> 
+            <%= f.label :location, :class=>"form-label"%>
+            <%= f.text_field :location, placeholder: "Tour location" , :class=>"form-control"%>
+         </div>
+         <div class="mb-3"> 
+            <%= f.label :duration, :class=>"form-label"%>
+            <%= f.number_field :duration, step:1, :class=>"form-control"%>
+         </div>
+        <div class="img-container p-3 text-center"> 
+            <img class="img-fluid" id="img_prev"  src="<%= asset_path('upload_image.png')%>" alt="">
+        </div>
+        <div class="images-container p-3" id='images-prev'> 
+        </div>
+    
+        <div class="mb-3">
+          <%= f.label :"Select Hero Image",:class=>"form-label"%>
+          <%= f.file_field :images, multiple: true,:class=>"form-control form-control-lg image-upload"%>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :"Tour Details", :class=>"form-label"%>
+          <br/>
+          <%= f.rich_text_area :details, wrap: "hard", placeholder: "Tour Details here" ,:class=>"form-control blog-body"%>
+        </div>
+  <div class="d-flex flex-row-reverse">
+  <%= link_to 'Cancel',tours_path, class: 'btn btn-danger' %> 
+
+      <%= f.button :submit, :class=>"btn btn-post" do %>
+        <i class='fa fa-paper-plane'></i> post
+      <% end %>
+      </div>
+    <% end %>
+
+    
+
+
+</div>
+
+<%= javascript_pack_tag 'image_preview' %>
