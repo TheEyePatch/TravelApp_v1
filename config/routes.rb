@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :tours
   resources :tourist_tours, except: :new
+  resources :travel_transactions
   get '/tourist_tours/new/:tour_id', to: 'tourist_tours#new', as: 'new_tourist_tour'
   
   root 'home#index'

@@ -8,8 +8,10 @@
       <% if tourist_signed_in? %>
         <%= link_to 'Tours', tours_path%>
         <%= link_to 'Your Tours', tourist_tours_path%>
+        <%= link_to 'Transactions', travel_transactions_path%>
         <%= link_to 'Sign-out', destroy_tourist_session_path, method: :delete%>
       <%elsif agency_signed_in?%>
+        <%= link_to 'Transactions', travel_transactions_path%>
         <%= link_to 'Sign-out', destroy_agency_session_path, method: :delete%>
       <% end %>
     <%elsif !user_signed_in?%>
