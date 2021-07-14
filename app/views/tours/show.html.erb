@@ -1,6 +1,8 @@
 <br/>
 <div class="card text-left">
-    <div class="card-header text-center"><h1><%=@tour.name%></h1></div>
+    <div class="card-header d-flex justify-content-between"><h1><%=@tour.name%></h1>
+    <%= link_to 'Edit', edit_tour_path, class:"nav-link"%>
+    </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
