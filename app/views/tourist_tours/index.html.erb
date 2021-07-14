@@ -1,12 +1,17 @@
+<br/><br/>
+<div class="d-flex justify-content-center flex-wrap">
 <%@tourist_tours.each do |tourist_tour|%>
-    <div>
-        <h2><%= tourist_tour.tour.name%><%= button_to 'Show', tourist_tour_path(tourist_tour), method: :get%></h2>
-        <h3>Total Amount: <%= tourist_tour.amount_bought%></h3>
-        <h3>Start Date: <%= tourist_tour.start_date%></h3>
-        <h3>End Date: <%= tourist_tour.end_date%></h3>
-        <%if tourist_tour.tour.images.attached?%>
-            <img class="img-fluid"   src="<%=(url_for(tourist_tour.tour.images.first))%>" alt="">
-        <%end%>
-            <%= tourist_tour.tour.details%>
+  <div class="card m-3" style="width: 20rem;">
+    <%if tourist_tour.tour.images.attached?%>
+        <img class="img-fluid"   src="<%=(url_for(tourist_tour.tour.images.first))%>" alt="">
+    <%end%>
+    <div class="card-body">
+        <h4 class="card-title"><%= tourist_tour.tour.name%></h4>
+        <h6 class="card-text">Total Amount: <%= tourist_tour.amount_bought%></h6>
+        <h6 class="card-text">Start Date: <%= tourist_tour.start_date%></h6>
+        <h6 class="card-text">End Date: <%= tourist_tour.end_date%></h6>
+            <%= link_to 'Details', tourist_tour_path(tourist_tour),class:"btn btn-secondary", method: :get%>
     </div>
+   </div>
 <%end%>
+</div>
