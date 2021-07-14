@@ -1,0 +1,17 @@
+<%if @tourist.cover_pic.attached?%>
+    <img src="<%=(url_for(current_user.cover_pic))%>" alt=""> 
+<%end%>
+<%if @tourist.profile_pic.attached?%>
+    <img src="<%=(url_for(current_user.profile_pic))%>" alt=""> 
+<%end%>
+<h1><%= @tourist.first_name%> <%=@tourist.last_name%></h1>
+<h2><%= @tourist.email%></h2>
+<h3><%= @tourist.address%></h3>
+<% unless @tourist.birth_date.nil? %>
+  <h3><%= @tourist.birth_date.strftime('%b %d, %Y')%></h3>
+<% end %>
+
+
+<% if @tourist == current_tourist%>
+    <%= button_to 'Edit Profile', edit_tourist_registration_path, method: :get%>
+<% end %>
