@@ -6,11 +6,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <%if user_signed_in?%>
-      <%if current_user.profile_pic.attached?%>
-        <img src="<%=(url_for(current_user.profile_pic))%>" alt="">
-      <%end%>
+      <%#if current_user.profile_pic.attached?%>
+        <%#<img src="<%#=(url_for(current_user.profile_pic))%><%#"#alt="">
+      <%#end%>
         <% if tourist_signed_in? %>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           <li class="nav-item">
+            <%= link_to 'Profile', tourist_path(current_tourist), class:"nav-link"%>
+          </li>
           <li class="nav-item">
             <%= link_to 'Tours', tours_path, class:"nav-link"%>
           </li>
@@ -27,10 +30,19 @@
         <%elsif agency_signed_in?%>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <%= link_to 'Sign-out', destroy_agency_session_path, method: :delete, class:"nav-link"%>
+            <%= link_to 'Profile', agency_path(current_agency), class:"nav-link"%>
           </li>
           <li class="nav-item">
-          <%= link_to 'New', new_tour_path, class:"nav-link"%>
+            <%= link_to 'Packages', tours_path, class:"nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'New', new_tour_path, class:"nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Transactions', travel_transactions_path, class:"nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign-out', destroy_agency_session_path, method: :delete, class:"nav-link"%>
           </li>
         </ul>
         <% end %>

@@ -1,0 +1,36 @@
+<%if current_user.cover_pic.attached?%>
+      <img src="<%=(url_for(current_user.cover_pic))%>" alt=""> 
+    <%end%>
+<%if @agency.profile_pic.attached?%>
+    <img src="<%=(url_for(current_user.profile_pic))%>" alt=""> 
+<%end%>
+<h1><%= @agency.agency_name%></h1>
+<h2><%= @agency.email%></h2>
+<h3><%= @agency.address%></h3>
+
+<% if agency_signed_in?%>
+    <%= button_to 'Edit Profile', edit_agency_registration_path, method: :get%>
+<% end %>
+
+<section>
+    <h2>All Packages</h2>
+    <div class="d-flex justify-content-center flex-wrap">
+    <% @tours.each do |tour|%>
+    <div class="card m-3" style="width: 20rem;">
+        <% if tour.images.attached?%>
+                <img class="card-img-top" src="<%=(url_for(tour.images.first))%>" alt="...">
+        <%end%>
+        <div class="card-body">
+            <h4 class="card-title">Name: <%= tour.name%></h4>
+            <h6 class="card-text">Price: <%= tour.price%></h6>
+            <h6 class="card-text">Location: <%= tour.location%></h6>
+            <%if tourist_signed_in?%>
+                <%= link_to 'Avail Package', new_tourist_tour_path(tour.id),class:"btn btn-primary"%>
+            <%else%>
+                <%= link_to 'Show', tour_path(tour),class:"btn btn-primary"%>
+            <%end%>
+        </div>
+    </div>
+    <%end%>
+</div>
+</section>
