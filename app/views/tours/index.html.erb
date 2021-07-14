@@ -1,17 +1,20 @@
+<br/><br/>
+<div class="d-flex justify-content-center flex-wrap">
 <% @tours.each do |tour|%>
-<div>
-    <h2><%= tour.name%></h2>
-    <ul>
-        <%if tourist_signed_in?%>
-            <li><%= link_to 'Avail Package', new_tourist_tour_path(tour.id)%></li>
-        <%else%>
-            <li><%= link_to 'Show', tour_path(tour)%></li>
-        <%end%>
-        <li><%= tour.price%></li>
-        <li><%= tour.location%></li>
-    </ul>
+  <div class="card m-3" style="width: 20rem;">
     <% if tour.images.attached?%>
-        <img class="img-fluid"   src="<%=(url_for(tour.images.first))%>" alt="">
+            <img class="card-img-top" src="<%=(url_for(tour.images.first))%>" alt="...">
     <%end%>
-</div>
+    <div class="card-body">
+        <h4 class="card-title">Name: <%= tour.name%></h4>
+        <h6 class="card-text">Price: <%= tour.price%></h6>
+        <h6 class="card-text">Location: <%= tour.location%></h6>
+        <%if tourist_signed_in?%>
+            <%= link_to 'Avail Package', new_tourist_tour_path(tour.id),class:"btn btn-primary"%>
+        <%else%>
+            <%= link_to 'Show', tour_path(tour),class:"btn btn-primary"%>
+        <%end%>
+    </div>
+   </div>
 <%end%>
+</div>
