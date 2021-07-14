@@ -10,8 +10,8 @@
     <div class="d-flex justify-content-evenly">
       <div class="container-sm"> 
         <h2> <%=@tour.location%> </h2>
-        <h3 id = tour-price>Pirce: <%=@tour.price%></h3>
-        <h3 id = tour-duration>Duration: <%=@tour.duration%> </h3>
+        <h3 id = tour-price data-price = <%=@tour.price%> >Price: <%=@tour.price%></h3>
+        <h3 id = tour-duration data-duration = <%=@tour.duration%>>Duration: <%=@tour.duration%> day/s</h3>
         <h3>Details:</h3>
         <p><%=@tour.details%></p>
       </div>
@@ -41,8 +41,8 @@
           <%= f.hidden_field :tour_id, value: @tour.id%>
           <%= f.submit 'Avail'%>
         <%end%>
-        <%= javascript_pack_tag 'tourist_tour_new' %>
       </div>
     </div>
   </div>
 </div>
+ <%= javascript_pack_tag 'tourist_tour_new' %>

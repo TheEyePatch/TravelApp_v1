@@ -1,5 +1,4 @@
 class AgenciesController < ApplicationController
-    before_action :authenticate_user!
     def show
         if current_agency
             @agency = current_agency
