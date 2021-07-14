@@ -1,33 +1,29 @@
-
-<table>
-    <thead>
-        <th>Package Name</th>
-        <% if agency_signed_in?%>
-            <th>Tourist</th>
-        <% elsif tourist_signed_in?%>
-            <th>Agency</th>
-        <%end%>
-        <th>Date Availed</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-    </thead>
-<tbody>
-<% @travel_transactions.each do |transaction|%>
+<br/><br/>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
-        <td><%= transaction.tourist_tour.tour.name%></td>
-        <%if agency_signed_in?%>
-            <td><%= transaction.tourist_tour.tourist.email%></td>
-        <%elsif tourist_signed_in?%>
-            <td><%= transaction.agency.email%></td>
-        <%end%>
-        <td><%= transaction.created_at.strftime('%b %d, %Y')%></td>
-        <%if !transaction.tourist_tour.start_date.nil?%>
+      <th scope="col">Package Name</th>
+      <th scope="col">Tourist</th>
+      <th scope="col">Agency</th>
+      <th scope="col">Date Availed</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @travel_transactions.each do |transaction|%>
+    <tr>
+      <td><%= transaction.tourist_tour.tour.name%></td>
+      <td><%= transaction.tourist_tour.tourist.email%></td>
+      <td><%= transaction.agency.email%></td>
+      <td><%= transaction.created_at.strftime('%b %d, %Y')%></td>
+         <%if !transaction.tourist_tour.start_date.nil?%>
             <td><%= transaction.tourist_tour.start_date.strftime('%b %d, %Y')%></td>
         <%end%>
         <%if !transaction.tourist_tour.end_date.nil?%>
             <td><%= transaction.tourist_tour.end_date.strftime('%b %d, %Y')%></td>
         <%end%>
     </tr>
-<%end%>
-</tbody>
+    <%end%>
+  </tbody>
 </table>
