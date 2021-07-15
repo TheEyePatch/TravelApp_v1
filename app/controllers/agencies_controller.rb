@@ -1,10 +1,11 @@
 class AgenciesController < ApplicationController
-    def show
-        if current_agency
-            @agency = current_agency
-        else
-            @agency = Agency.find(params[:id])
+    def index
+        if tourist_signed_in?
+            @agencies = Agency.all
         end
+    end
+    def show
+        @agency = Agency.find(params[:id])
         @tours = @agency.tours
     end
 end

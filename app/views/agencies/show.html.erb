@@ -3,8 +3,10 @@
 <div class="container ">
     <div class="main-body border border-info rounded">
           <div class="row gutters-sm">
-          <%if current_user.cover_pic.attached?%>
-            <img src="<%=(url_for(current_user.cover_pic))%>" height="200" alt=""> 
+          <%if @agency.cover_pic.attached?%>
+            <img src="<%=(url_for(@agency.cover_pic))%>" height="200" alt=""> 
+          <%if @agency.cover_pic.attached?%>
+            <img src="<%=(url_for(@agency.cover_pic))%>" height="200" alt=""> 
           <%else%>
             <img src="https://newevolutiondesigns.com/images/freebies/green-facebook-cover-8.jpg" height="200" alt="" />
           <%end%>
@@ -14,7 +16,7 @@
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
                     <%if @agency.profile_pic.attached?%>
-                        <img src="<%=(url_for(current_user.profile_pic))%>" class="rounded-circle" width="150" height="150" alt=""> 
+                        <img src="<%=(url_for(@agency.profile_pic))%>" class="rounded-circle" width="150" height="150" alt=""> 
                     <%else%>
                       <img src="http://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG-Free-Download.png" class="rounded-circle" width="150" height="150" alt="" />
                     <%end%>
