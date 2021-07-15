@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_one_attached :profile_pic
   has_one_attached :cover_pic
   has_many :messages
+
 end
