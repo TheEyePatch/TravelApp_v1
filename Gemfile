@@ -31,8 +31,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "aws-sdk-s3", require: false
 gem "mini_magick"
 
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'rspec-rails', '~> 4.1', '>= 4.1.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
