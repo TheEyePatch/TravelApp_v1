@@ -4,9 +4,7 @@
     <div class="main-body border border-info rounded">
           <div class="row gutters-sm">
           <%if @agency.cover_pic.attached?%>
-            <img src="<%=(url_for(@agency.cover_pic))%>" height="200" alt=""> 
-          <%if @agency.cover_pic.attached?%>
-            <img src="<%=(url_for(@agency.cover_pic))%>" height="200" alt=""> 
+            <img src="<%=(url_for(@agency.cover_pic))%>" height="200" alt="">
           <%else%>
             <img src="https://newevolutiondesigns.com/images/freebies/green-facebook-cover-8.jpg" height="200" alt="" />
           <%end%>
