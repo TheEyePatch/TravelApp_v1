@@ -4,9 +4,9 @@
     <div class="main-body border border-info rounded">
           <div class="row gutters-sm">
           <%if @agency.cover_pic.attached?%>
-            <img src="<%=(url_for(@agency.cover_pic))%>" height="200" alt="">
+            <img src="<%=(url_for(@agency.cover_pic))%>" alt="" id="image">
           <%else%>
-            <img src="https://newevolutiondesigns.com/images/freebies/green-facebook-cover-8.jpg" height="200" alt="" />
+            <img src="https://newevolutiondesigns.com/images/freebies/green-facebook-cover-8.jpg" alt="" id="image" />
           <%end%>
 
             <div class="col-md-4 mb-3"><br/>
@@ -76,7 +76,6 @@
                       <%#= @agency.address%> Very Good
                     </div>
                   </div>
-                
                 </div>
               </div>
             </div>

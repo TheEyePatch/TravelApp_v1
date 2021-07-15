@@ -3,9 +3,9 @@
     <div class="main-body border border-info rounded">
           <div class="row gutters-sm">
           <%if @tourist.cover_pic.attached?%>
-            <img src="<%=(url_for(@tourist.cover_pic))%>" height="200" alt=""> 
+            <img src="<%=(url_for(@tourist.cover_pic))%>" height="200" alt="" id="image"> 
           <%else%>
-            <img src="https://newevolutiondesigns.com/images/freebies/green-facebook-cover-8.jpg" height="200" alt="" />
+            <img src="https://newevolutiondesigns.com/images/freebies/green-facebook-cover-8.jpg" alt="" id="image"/>
           <%end%>
             <div class="col-md-4 mb-3"><br/>
               <div class="card">
@@ -75,8 +75,6 @@
                       <%= @tourist.address%>
                     </div>
                   </div>
-                  <hr>
-                  
                 </div>
               </div>
             </div>

@@ -154,3 +154,32 @@ h6 {
 a{
     text-decoration: none
 }
+
+.Package{
+    width: 300px;
+}
+
+
+#image{
+ width: 1150px; 
+ height:210px; 
+ object-fit: cover
+}
+
+#editImage{
+    width: 400px; 
+    height:210px; 
+    object-fit: cover
+}
+
+#ProfilePic{
+    width:150px; 
+    height:150px; 
+    border-radius: 50%;
+}
+
+#form{
+    width: 500px;
+}
+/* NAVBAR */
+
