@@ -1,3 +1,16 @@
+<% if @tourist_tours.count == 0 %>
+
+<div class="d-flex justify-content-center" id="cont">
+    <%= image_tag("journey-animate.svg")%>
+    <img src="journey-animate.svg" height="200" alt="" />
+</div>
+
+<div class="d-flex justify-content-center">
+<%= link_to 'Travel Now', tours_path, class:"h1 text-secondary"%>
+</div>
+
+<%else%>
+
 <br/><br/>
 <div class="d-flex justify-content-center flex-wrap">
 <%@tourist_tours.each do |tourist_tour|%>
@@ -15,3 +28,5 @@
    </div>
 <%end%>
 </div>
+
+<%end%>
