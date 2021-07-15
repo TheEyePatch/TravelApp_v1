@@ -14,7 +14,7 @@
   <% @travel_transactions.each do |transaction|%>
     <tr>
       <td><%= transaction.tourist_tour.tour.name%></td>
-      <td><%#= transaction.tourist_tour.tourist.email%></td>
+      <td><%= transaction.tourist_tour.tourist.email%></td>
       <td><%= transaction.agency.email%></td>
       <td><%= transaction.created_at.strftime('%b %d, %Y')%></td>
          <%if !transaction.tourist_tour.start_date.nil?%>
