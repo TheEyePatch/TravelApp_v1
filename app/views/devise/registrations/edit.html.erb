@@ -24,7 +24,7 @@
             <%= f.label :birth_date%><br />
             <%= f.date_field :birth_date, class:"form-control"%>
           </div>
-        <% elsif current_page?(new_agency_registration_path) %>
+        <% elsif current_page?(edit_agency_registration_path) %>
           <%= f.label :agency_name%><br />
           <%= f.text_field :agency_name, class:"form-control"%>
         <%end%>
