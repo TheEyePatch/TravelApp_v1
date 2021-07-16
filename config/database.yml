@@ -24,8 +24,6 @@ default: &default
 development:
   <<: *default
   database: travel_app_v_1_development
-  username: postgres
-  password: gcc963717
   host: localhost
   port: 5432
 
@@ -62,8 +60,6 @@ development:
 test:
   <<: *default
   database: travel_app_v_1_test
-  username: postgres
-  password: gcc963717
   host: localhost
   port: 5432
 
