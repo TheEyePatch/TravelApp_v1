@@ -28,6 +28,7 @@ class WebhooksController < ApplicationController
       stripe = Stripe::PaymentIntent.retrieve(payment_intent)
       data = stripe.metadata
       puts data
+      puts current_tourist
       @tourist_tour = TouristTour.create(
       tour_id: data.tour_id, 
       tourist_id: current_tourist.id, 
