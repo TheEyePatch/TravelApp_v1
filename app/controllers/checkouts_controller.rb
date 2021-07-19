@@ -2,6 +2,7 @@ class CheckoutsController < ApplicationController
   def create
     Stripe.api_key = Rails.application.credentials.stripe[:secret_key]
         @tour = Tour.find(params[:tour_id])
+        byebug
         @session = Stripe::Checkout::Session.create({
         payment_method_types: ['card'],
         line_items: [{ 
@@ -12,6 +13,7 @@ class CheckoutsController < ApplicationController
             }], 
         payment_intent_data: { 
           metadata: { 
+            tourist_id: current_tourist.id
             tour_id: @tour.id, 
             price: @tour.price,
             start_date: params[:start_date],

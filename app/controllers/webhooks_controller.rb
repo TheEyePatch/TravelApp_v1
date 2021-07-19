@@ -31,7 +31,7 @@ class WebhooksController < ApplicationController
       puts current_tourist
       @tourist_tour = TouristTour.create(
       tour_id: data.tour_id, 
-      tourist_id: current_tourist.id, 
+      tourist_id: data.tourist_id, 
       amount_bought: data.total_amount, 
       guest_quantity: data.guest_quantity,
       start_date: data.start_date,
