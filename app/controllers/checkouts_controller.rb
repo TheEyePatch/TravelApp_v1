@@ -13,7 +13,7 @@ class CheckoutsController < ApplicationController
             }], 
         payment_intent_data: { 
           metadata: { 
-            tourist_id: current_tourist.id
+            tourist_id: current_tourist.id,
             tour_id: @tour.id, 
             price: @tour.price,
             start_date: params[:start_date],
