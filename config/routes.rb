@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :chat_rooms, only: [:index, :show]
   resources :messages, only: [:create]
   resources :checkouts, only: [:create]
+  resources :webhooks, only: [:create]
   post 'chat_user', to: 'chat_rooms#chat_user', as: 'chat_user'
   get '/tourist_tours/new/:tour_id', to: 'tourist_tours#new', as: 'new_tourist_tour'
   
