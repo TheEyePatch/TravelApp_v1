@@ -2,7 +2,6 @@ class CheckoutsController < ApplicationController
   def create
     Stripe.api_key = Rails.application.credentials.stripe[:secret_key]
         @tour = Tour.find(params[:tour_id])
-        byebug
         @session = Stripe::Checkout::Session.create({
         payment_method_types: ['card'],
         line_items: [{ 
