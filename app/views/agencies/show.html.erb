@@ -73,7 +73,18 @@
                       <h6 class="mb-0">Rating</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <%#= @agency.address%> Very Good
+                      <div class="star-rating" data-score=<%= Review.where(:agency_id => @agency.id ).average(:rating) %> ></div>
+                      
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <%= link_to 'reviews', agency_reviews_path(@agency) %>
+                      <br>
+                      <%= link_to 'new review', new_agency_review_path(@agency) %>
                     </div>
                   </div>
                 </div>
@@ -82,3 +93,4 @@
           </div>
         </div>
     </div>
+

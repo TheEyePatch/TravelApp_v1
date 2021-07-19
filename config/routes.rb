@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :admins
-  resources :agencies, only: [:index, :show]
+  resources :agencies, only: [:index, :show] do
+    resources :reviews
+  end
+
   resources :tourists , only: :show
   resources :reviews
   resources :tours, except: [:destroy]
