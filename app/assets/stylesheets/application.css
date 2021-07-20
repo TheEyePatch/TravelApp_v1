@@ -15,6 +15,7 @@
  *= require_self
  */
 
+ @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css";
 
 .padding {
     padding: 3rem !important

@@ -6,6 +6,7 @@ class Tourist < User
     has_many :reviews
     has_many :chat_room_users, foreign_key: 'user_id'
     has_many :chat_rooms, through: :chat_room_users
+    has_many :tour_reviews
 
     after_create :set_approved_to_true
 

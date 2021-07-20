@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
+  get 'tour_reviews/index'
+  get 'tour_reviews/new'
+  get 'tour_reviews/create'
   devise_for :tourists
   devise_for :agencies
   devise_for :admins, skip: :registration
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :admins
-  resources :agencies, only: [:index, :show]
+  resources :agencies, only: [:index, :show] do
+    resources :reviews
+  end
+
   resources :tourists , only: :show
   resources :reviews
-  resources :tours, except: [:destroy]
+  resources :tours, except: [:destroy] do
+    resources :tour_reviews
+  end
+
   resources :tourist_tours, except: [:new, :edit, :update]
   resources :travel_transactions, only: [:index]
   resources :chat_rooms, only: [:index, :show]
