@@ -1,25 +1,5 @@
 <%= link_to 'Back to Profile', agency_path(params[:agency_id]), class:"btn btn-info ", method: :get%>
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Tourist ID</th>
-      <th scope="col">Rating</th>
-      <th scope="col">Review</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @reviews.each do |review|%>
-    <tr>
-      <td><%= review.id %></td>
-      <td><%= Tourist.where(id: review.tourist_id).first.first_name %></td>
-      <td><%= review.rating %></td>
-      <td><%= review.review %></td>
-         
-    </tr>
-  <%end%>
-  </tbody>
-</table>
+
 
 <div class="container">
     			
@@ -27,22 +7,8 @@
 			<div class="col-sm-3">
 				<div class="rating-block">
 					<h4>Average user rating</h4>
-					<h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="far fa-star fa-0.5x" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="far fa-star fa-0.5x" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="far fa-star fa-0.5x" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-					  <span class="fas fa-star fa-0.5x" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-					  <span class="fas fa-star fa-0.5x" aria-hidden="true"></span>
-					</button>
+					<h2 class="bold padding-bottom-7"><%= Review.where(:agency_id => @agency.id ).average(:rating).round(2) %> <small>/ 5</small></h2>
+					<div class="star-rating" data-score=<%= Review.where(:agency_id => @agency.id ).average(:rating) %> ></div>
 				</div>
 			</div>
 			<div class="col-sm-3">
@@ -124,40 +90,32 @@
 				<div class="review-block">
 
           <% @reviews.each do |review|%>
-					<div class="row">
-						<div class="col-sm-3">
-              <%if Tourist.where(id: review.tourist_id).first.profile_pic.attached?%>
-                <img src="<%=(url_for(@agency.profile_pic))%>" class="img-rounded" alt=""> 
-              <%else%>
-                <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-              <%end%>
-							
-							<div class="review-block-name"><%= Tourist.where(id: review.tourist_id).first.first_name %></div>
-							<div class="review-block-date"><%= review.created_at %></div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-                <% review.rating.to_i.times do %>
-                  <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align" >
-                    <span class="far fa-star fa-0.5x" aria-hidden="true"></span>
-                  </button>
-                <% end %>
-								<% (5-review.rating.to_i).times do %>
+            <div class="row">
+              <div class="col-sm-3">
+                <%if Tourist.where(id: review.tourist_id).first.profile_pic.attached?%>
+                  <img src="<%=(url_for(Tourist.where(id: review.tourist_id).first.profile_pic))%>" class="rounded-circle" width="50" height="50" alt=""> 
+                <%else%>
+                  <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                <%end%>
                   
-                  <button type="button" class="btn btn-default btn-light btn-sm" aria-label="Left Align">
-                    <span class="far fa-star fa-0.5x" aria-hidden="true"></span>
-                  </button>
-                <% end %>
-							</div>
-							<div class="review-block-description"><%= review.review %></div>
-              <p>
-                <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> Reply</a>
-              </p>
-						</div>
-					</div>
-					<hr/>
-					
+                <div class="review-block-name"><strong><%= Tourist.where(id: review.tourist_id).first.first_name %></strong></div>
+                <div class="review-block-date"><%= review.created_at %></div>
+              </div>
+              <div class="col-sm-9">
+                <div class="review-block-rate">
+                  <div class="star-rating" data-score=<%= review.rating %> ></div>
+                </div>
+                <br>
+                <div class="review-block-description"><%= review.review %></div>
+                <br>
+                <p>
+                  <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                  <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> Reply</a>
+                </p>
+              </div>
+            </div>
+            <hr/>
+            
           <% end %>
 					
 					
@@ -165,4 +123,4 @@
 			</div>
 		</div>
 		
-    </div> <!-- /container -->
+</div> <!-- /container -->

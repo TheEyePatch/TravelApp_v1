@@ -3,7 +3,6 @@ class ReviewsController < ApplicationController
     before_action :authenticate_reviewer, only: [:new, :create]
 
     def index
-        @agency = Agency.find(params[:agency_id])
         @reviews = @agency.reviews.all
     end
 
@@ -12,7 +11,6 @@ class ReviewsController < ApplicationController
     end
 
     def new
-        @agency = Agency.find(params[:agency_id])
         @review = Review.new
     end
 
@@ -24,7 +22,7 @@ class ReviewsController < ApplicationController
         if @review.save
             redirect_to agency_path(@review.agency_id), notice: "Successfully submitted a review"
         else
-            redirect_to root_path, alert: @review.errors.full_messages.first
+            redirect_to agency_path(@review.agency_id), alert: @review.errors.full_messages.first
         end
     end
 
@@ -41,7 +39,7 @@ class ReviewsController < ApplicationController
     def authenticate_reviewer
         
         unless current_user.type == "Tourist"
-            # flash[:alert] = "Only Tourist can submit reviews"
+            
             redirect_back fallback_location: agency_path(@agency), alert: "Only Tourist can submit reviews" 
         end
         
