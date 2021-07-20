@@ -15,7 +15,7 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
-require("packs/jquery.raty")
+require("packs/jquery_raty")
 
 import "bootstrap"
 import $ from 'jquery';
