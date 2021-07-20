@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :find_agency
+    before_action :authenticate_reviewer, only: [:new, :create]
 
     def index
         @agency = Agency.find(params[:agency_id])
@@ -29,7 +30,23 @@ class ReviewsController < ApplicationController
 
     private
 
+    def find_agency
+        @agency = Agency.find(params[:agency_id])
+    end
+
     def review_params
         params.require(:review).permit(:agency_id, :tourist_id, :review, :rating)
     end
+
+    def authenticate_reviewer
+        
+        unless current_user.type == "Tourist"
+            # flash[:alert] = "Only Tourist can submit reviews"
+            redirect_back fallback_location: agency_path(@agency), alert: "Only Tourist can submit reviews" 
+        end
+        
+    end
+
+
+    
 end
