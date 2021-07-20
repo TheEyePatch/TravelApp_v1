@@ -1,5 +1,5 @@
 <%= link_to 'Back to Profile', agency_path(params[:agency_id]), class:"btn btn-info ", method: :get%>
-<%= form_for @review do |form| %>
+<%= form_with scope: :review, url: agency_reviews_path(@agency)  do |form| %>
 
   <% if @review.errors.any? %>
       <div id="error_explanation">
