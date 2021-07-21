@@ -2,7 +2,6 @@
   "name": "travel-app-v-1",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
     "@popperjs/core": "^2.9.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.4",

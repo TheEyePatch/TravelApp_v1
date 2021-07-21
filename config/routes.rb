@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :tourists , only: :show
-  resources :reviews
   resources :tours, except: [:destroy] do
     resources :tour_reviews
   end
