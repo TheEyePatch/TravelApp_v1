@@ -1,5 +1,7 @@
-<%= link_to 'Back to Profile', agency_path(params[:agency_id]), class:"btn btn-info ", method: :get%>
-<%= form_with scope: :review, url: agency_reviews_path(@agency)  do |form| %>
+<br>
+<%= link_to 'Back to Profile', agency_path(params[:agency_id]), class:"btn btn-outline-dark", method: :get%>
+<br>
+<%= form_with scope: :review, url: agency_reviews_path(@agency) do |form| %>
 
   <% if @review.errors.any? %>
       <div id="error_explanation">
@@ -18,7 +20,7 @@
     <div class="card-body">
       
         <div class="mb-3">
-          <%= form.hidden_field :agency_id, value: params[:agency_id] %>
+          <%= form.hidden_field :agency_id, value: @agency.id %>
         </div>
 
         <div class="mb-3">
