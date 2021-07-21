@@ -30,7 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem "aws-sdk-s3", require: false
 gem "mini_magick"
-
+gem 'ratyrate'
 gem "hirb"
 gem 'redis'
 gem "font-awesome-rails"

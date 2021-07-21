@@ -178,6 +178,7 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rake (13.0.4)
+    ratyrate (1.2.2.alpha)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -281,6 +282,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.1.3, >= 6.1.3.2)
   rails-erd
+  ratyrate
   redis
   rspec-rails (~> 4.1, >= 4.1.2)
   sass-rails (>= 6)
