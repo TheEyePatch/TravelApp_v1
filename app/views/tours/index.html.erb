@@ -23,7 +23,7 @@
         <h6 class="card-text">Price: <%= tour.price%></h6>
         <h6 class="card-text">Location: <%= tour.location%></h6>
         <%if tourist_signed_in?%>
-            <%= link_to 'Avail Package', new_tourist_tour_path(tour.id),class:"btn btn-primary"%>
+            <%= link_to 'Show Package', tour_path(tour.id),class:"btn btn-primary"%>
         <%else%>
             <%= link_to 'Show', tour_path(tour),class:"btn btn-primary"%>
         <%end%>

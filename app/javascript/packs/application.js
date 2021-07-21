@@ -8,13 +8,14 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
-require("packs/jquery.raty")
+require("packs/jquery_raty")
 
 import "bootstrap"
 import $ from 'jquery';
