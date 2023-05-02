@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
+  port: 5432
   database: travel_app_v_1_production
-  username: travel_app_v_1
-  password: <%= ENV['TRAVEL_APP_V_1_DATABASE_PASSWORD'] %>
+  url: <%=% ENV['TRAVEL_APP_V1_DB_URL'] >
