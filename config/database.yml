@@ -86,4 +86,4 @@ test:
 production:
   <<: *default
   port: 5432
-  url: <%=% ENV['TRAVEL_APP_V1_DB_URL'] %>
+  url: <%= ENV['TRAVEL_APP_V1_DB_URL'] %>
